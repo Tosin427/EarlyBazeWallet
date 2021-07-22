@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
+const Bitcoin = require('bitcoin-address-generator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -46,10 +47,14 @@ router.post(
         { forceHttps: true }
       );
 
+      let bitcoinAddress = {};
+      Bitcoin.createWalletAddress(data => { bitcoinAddress = data })
+
       user = new User({
         name,
         email,
         avatar,
+        bitcoinAddress,
         password
       });
 

@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String
   },
+  bitcoinAddress: {
+    key: { type: String, required: true },
+    address: { type: String, required: true }
+  },
   date: {
     type: Date,
     default: Date.now
